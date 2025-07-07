@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdeaGen Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+        .card {
+            background-color: #1f2937;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .card-content { flex-grow: 1; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">IdeaGen Library</h1>
+            <p class="text-lg text-gray-400 mt-2">A collection of generated ideas and concepts.</p>
+        </header>
+        <main id="idea-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cards will be dynamically inserted here -->
+        </main>
+        <div id="status-message" class="text-center text-gray-400 mt-12 text-xl"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('idea-gallery');
+            const statusMessage = document.getElementById('status-message');
+            const manifestURL = 'IdeaGen/manifest.json';
+
+            statusMessage.textContent = 'Fetching ideas...';
+
+            fetch(manifestURL)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.ideas || data.ideas.length === 0) {
+                        statusMessage.textContent = 'No ideas found in the manifest.';
+                        return;
+                    }
+                    statusMessage.style.display = 'none';
+                    data.ideas.forEach(idea => {
+                        const cardLink = document.createElement('a');
+                        cardLink.href = `IdeaGen/${idea.file}`;
+                        
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        
+                        card.innerHTML = `
+                            <img src="${idea.image}" alt="Preview for ${idea.title}" class="w-full h-48 object-cover">
+                            <div class="p-6 card-content">
+                                <h2 class="text-2xl font-bold text-white mb-2">${idea.title}</h2>
+                                <p class="text-gray-400">${idea.description}</p>
+                            </div>
+                        `;
+                        
+                        cardLink.appendChild(card);
+                        gallery.appendChild(cardLink);
+                    });
+                })
+                .catch(error => {
+                    console.error('Failed to load idea manifest:', error);
+                    statusMessage.textContent = 'Error: Could not load the idea library.';
+                    statusMessage.classList.add('text-red-400');
+                });
+        });
+    </script>
+</body>
+</html>
