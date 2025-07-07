@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SudoDev - Augment Your Operations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #f5f5dc;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .card {
+            background-color: rgba(44, 44, 44, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid #444;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #d2b48c;
+            color: #1a1a1a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(210, 180, 140, 0.3);
+        }
+        .highlight {
+            color: #d2b48c;
+        }
+        .offer-details summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.5rem;
+            background-color: #333;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+        .offer-details summary::-webkit-details-marker { display: none; }
+        .offer-details[open] summary {
+            background-color: #3a3a3a;
+        }
+        .offer-content {
+            padding: 1.5rem;
+            border: 1px solid #444;
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+            background-color: #2c2c2c;
+        }
+        .bonus-item {
+            background-color: rgba(210, 180, 140, 0.05);
+            border-left: 3px solid #d2b48c;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="particles-js"></div>
+    <div class="content-wrapper container mx-auto p-4 md:p-8 max-w-4xl">
+
+        <!-- Hero Section -->
+        <header class="text-center mb-16" style="animation-delay: 0.1s;">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">Stop Juggling sh!t. <br><span class="highlight">Augment Your Genius.</span></h1>
+            <p class="text-lg text-gray-300 mt-4 max-w-2xl mx-auto">I design and build intelligent systems for overwhelmed consultants and founders. We don't just automate your work; we augment your ability to deliver, scale, and reclaim your focus.</p>
+            <div class="mt-8">
+                <a href="#offers" class="cta-button">Explore Augmentation Packages</a>
+            </div>
+        </header>
+
+        <main class="space-y-12">
+
+            <!-- Pain Point / Does this sound familiar? -->
+            <section class="card" style="animation-delay: 0.3s;">
+                <h2 class="text-3xl font-bold text-center text-white mb-6">Does This Sound Familiar?</h2>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <div class="text-4xl mb-2">😩</div>
+                        <h3 class="font-semibold text-lg text-d2b48c">Repetitive Work</h3>
+                        <p class="text-gray-400 text-sm">You're stuck manually onboarding clients, nurturing leads, or moving data between systems, stealing hours from high-value work.</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl mb-2">💔</div>
+                        <h3 class="font-semibold text-lg text-d2b48c">Leads Fall Through</h3>
+                        <p class="text-gray-400 text-sm">Potential clients show interest, but a lack of systematic follow-up means they go cold and opportunities are lost.</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl mb-2">⚙️</div>
+                        <h3 class="font-semibold text-lg text-d2b48c">System Chaos</h3>
+                        <p class="text-gray-400 text-sm">Your tools don't talk to each other, creating data silos and forcing you to be the human glue holding it all together.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Solution: The SudoDev Method -->
+            <section class="card" style="animation-delay: 0.5s;">
+                <h2 class="text-3xl font-bold text-center text-white mb-2">The SudoDev Method: Engineer-Grade Augmentation</h2>
+                <p class="text-center text-gray-400 max-w-3xl mx-auto mb-8">My background isn't just in tech; it's in Mechanical Engineering. That means every system I build is rooted in structured, analytical problem-solving. We don't just connect apps; we design robust, reliable workflows that amplify your unique expertise.</p>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-1/2">
+                        <h3 class="font-bold text-xl text-d2b48c mb-2">This is for you if:</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>You're a consultant, coach, or agency founder who is an expert in your field, but not in systems architecture.</li>
+                            <li>You want to deliver a "wow" experience to every client, consistently and effortlessly.</li>
+                            <li>You believe your time is better spent on strategy and client work than on manual, repetitive tasks.</li>
+                            <li>You value data privacy and control, and are interested in the power of self-hosted solutions.</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 p-6 bg-gray-800 rounded-lg">
+                        <h3 class="font-bold text-xl text-d2b48c mb-2">What we build together:</h3>
+                         <p class="text-gray-300">A seamless operational backbone for your business. Think of it as a digital apprentice that handles the repetitive work, so you can focus on the strategic work only you can do. It's not replacement, it's reinforcement.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Offers Section -->
+            <section id="offers" style="animation-delay: 0.7s;">
+                <h2 class="text-3xl font-bold text-center text-white mb-8">Augmentation Packages</h2>
+                <div class="space-y-6">
+
+                    <!-- Offer 1: Augmented Onboarding -->
+                    <details class="offer-details">
+                        <summary class="flex justify-between items-center">
+                            <span class="font-bold text-xl text-white">The 7-Day Augmented Onboarding Experience</span>
+                            <span class="text-d2b48c font-semibold">View Details &rarr;</span>
+                        </summary>
+                        <div class="offer-content">
+                            <p class="font-semibold text-lg text-d2b48c">Dream Outcome: Every new client gets a flawless, professional "wow" experience automatically, reclaiming 2-3 hours of your time per client.</p>
+                            <div class="my-4 border-t border-gray-600"></div>
+                            <h4 class="font-bold text-white mb-2">What You Get:</h4>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1 mb-4">
+                                <li>Done-For-You setup of a 3-step client onboarding flow.</li>
+                                <li>Automated Smart Welcome Form to capture all client info.</li>
+                                <li>Automatic CRM / Database entry (Notion, Google Sheets, etc.).</li>
+                                <li>Automated Welcome Email Sequence kickoff.</li>
+                            </ul>
+                            <div class="space-y-3">
+                                <div class="bonus-item"><strong>Bonus #1:</strong> "The Perfect Welcome Packet" Template (Canva/Google Doc).</div>
+                                <div class="bonus-item"><strong>Bonus #2:</strong> "Client Delight" Email Swipe File (3 pro templates).</div>
+                                <div class="bonus-item"><strong>Bonus #3:</strong> Seamless Integration Check with up to two of your core tools.</div>
+                            </div>
+                            <div class="mt-6 text-center">
+                                <a href="#" class="cta-button">Book a Call to Discuss Onboarding</a>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <!-- Offer 2: Augmented Lead Nurture -->
+                    <details class="offer-details">
+                        <summary class="flex justify-between items-center">
+                             <span class="font-bold text-xl text-white">The Augmented Lead Nurture System</span>
+                            <span class="text-d2b48c font-semibold">View Details &rarr;</span>
+                        </summary>
+                        <div class="offer-content">
+                            <p class="font-semibold text-lg text-d2b48c">Dream Outcome: Never lose a warm lead again. Automatically capture, deliver value, and nurture every prospect on autopilot.</p>
+                            <div class="my-4 border-t border-gray-600"></div>
+                            <h4 class="font-bold text-white mb-2">What You Get:</h4>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1 mb-4">
+                                <li>Done-For-You setup of an automated lead magnet delivery system.</li>
+                                <li>Implementation of a 3-step automated email nurture sequence.</li>
+                                <li>Automatic CRM tagging and email list segmentation.</li>
+                            </ul>
+                            <div class="space-y-3">
+                                <div class="bonus-item"><strong>Bonus #1:</strong> High-Converting Lead Magnet Form Template & Setup.</div>
+                                <div class="bonus-item"><strong>Bonus #2:</strong> "Open Me Now" Email Subject Line Toolkit.</div>
+                                <div class="bonus-item"><strong>Bonus #3:</strong> "Rapid Results" 30-Minute Traffic Strategy Call.</div>
+                            </div>
+                             <div class="mt-6 text-center">
+                                <a href="#" class="cta-button">Book a Call to Discuss Lead Nurture</a>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Offer 3: Task Augmentation -->
+                    <details class="offer-details">
+                        <summary class="flex justify-between items-center">
+                             <span class="font-bold text-xl text-white">The Task Augmentation Package</span>
+                            <span class="text-d2b48c font-semibold">View Details &rarr;</span>
+                        </summary>
+                        <div class="offer-content">
+                            <p class="font-semibold text-lg text-d2b48c">Dream Outcome: Pick your single most-hated repetitive task, and we'll build a custom system to make it disappear forever.</p>
+                            <div class="my-4 border-t border-gray-600"></div>
+                            <h4 class="font-bold text-white mb-2">What You Get:</h4>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1 mb-4">
+                                <li>A focused 60-min Discovery & Task Pinpointing Session.</li>
+                                <li>A custom micro-augmentation built specifically for your chosen task.</li>
+                                <li>Full implementation, testing, and a video walkthrough handover.</li>
+                            </ul>
+                            <div class="space-y-3">
+                                <div class="bonus-item"><strong>Bonus #1:</strong> "The Task Mapping" Blueprint to find future opportunities.</div>
+                                <div class="bonus-item"><strong>Bonus #2:</strong> A personalized video walkthrough of your new system.</div>
+                                <div class="bonus-item"><strong>Urgency Bonus:</strong> Sign up within 48h for a complimentary "Future Proofing Tweak".</div>
+                            </div>
+                             <div class="mt-6 text-center">
+                                <a href="#" class="cta-button">Book a Call to Obliterate a Task</a>
+                            </div>
+                        </div>
+                    </details>
+
+                </div>
+            </section>
+            
+            <!-- Tech Stack -->
+            <section class="card text-center" style="animation-delay: 0.9s;">
+                <h2 class="text-2xl font-bold text-white mb-4">Technology & Tools I Wield</h2>
+                <p class="text-gray-400 mb-6">I use a robust stack of best-in-class tools to build your systems. I'm fluent in both mainstream SaaS and secure, self-hosted solutions.</p>
+                <div class="flex justify-center items-center flex-wrap gap-x-6 gap-y-4 text-gray-400">
+                    <span>N8N</span> &bull; <span>Make.com</span> &bull; <span>Python</span> &bull; <span>Docker</span> &bull; <span>Oracle Cloud</span> &bull; <span>Ubuntu</span> &bull; <span>Notion</span> &bull; <span>APIs</span> &bull; <span>Listmonk</span> &bull; <span>Invoice Ninja</span>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 text-gray-500 text-sm">
+            <p>&copy; 2024 SudoDev (Russ). Systems Engineered for Clarity and Growth.</p>
+            <p>sudodev.online</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS('particles-js', {
+                "particles": { "number": { "value": 50, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#d2b48c" }, "shape": { "type": "circle" }, "opacity": { "value": 0.2, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#444", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" } },
+                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } } },
+                "retina_detect": true
+            });
+        });
+    </script>
+</body>
+</html>
