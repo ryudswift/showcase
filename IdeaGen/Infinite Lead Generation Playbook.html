@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Lead Generation Playbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles from SudoDev theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #f5f5dc;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-color: #1a1a1a;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .animated-card {
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border-color: #d2b48c;
+        }
+        
+        /* Staggered animation delays */
+        main > .animated-card { animation-delay: 0.2s; }
+        main > details:nth-of-type(1) .animated-card { animation-delay: 0.4s; }
+        main > details:nth-of-type(2) .animated-card { animation-delay: 0.6s; }
+        main > details:nth-of-type(3) .animated-card { animation-delay: 0.8s; }
+        main > details:nth-of-type(4) .animated-card { animation-delay: 1.0s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Collapsible Section Styles */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem;
+            background-color: #2c2c2c;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] > summary {
+            background-color: #333;
+        }
+        .phase-content {
+            padding: 1.5rem;
+            border: 1px solid #444;
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+            background-color: #2c2c2c;
+        }
+
+        /* Completion State Styling */
+        details.phase-completed > summary {
+            border-left: 5px solid #4ade80; /* green-400 */
+        }
+        details.phase-completed .completion-badge {
+            display: inline-block;
+        }
+
+        .phase-number {
+            flex-shrink: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-right: 1rem;
+            background-color: #d2b48c;
+            color: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .completion-badge {
+            display: none;
+            background-color: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #4ade80;
+            margin-left: auto;
+        }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-item.completed {
+            opacity: 0.6;
+        }
+        .checklist-item.completed .item-text {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 1rem;
+            border: 2px solid #d2b48c;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            flex-shrink: 0;
+        }
+        .checklist-item.completed .checkbox {
+            background-color: #d2b48c;
+        }
+        .checkbox svg {
+            display: none;
+            width: 1rem;
+            height: 1rem;
+            color: #1a1a1a;
+        }
+        .checklist-item.completed .checkbox svg {
+            display: block;
+        }
+        
+        .message-template {
+            background-color: #1f1f1f;
+            border: 1px solid #444;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+            color: #ccc;
+            margin-top: 1rem;
+        }
+        .hint-box {
+            background-color: rgba(210, 180, 140, 0.05);
+            border-left: 4px solid #d2b48c;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+    <div id="particles-js"></div>
+    <div class="content-wrapper container mx-auto p-4 md:p-8 max-w-4xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Interactive Playbook</h1>
+            <p class="text-lg text-gray-300 mt-2">Track your progress as you master each phase.</p>
+        </header>
+
+        <main class="space-y-6">
+
+            <!-- Master Progress Tracker -->
+            <section class="animated-card">
+                <h2 class="text-2xl font-bold text-white mb-4">Master Progress Tracker</h2>
+                <p class="text-gray-400 mb-4">Check off each phase once you fully understand it. This will mark the corresponding section below as complete.</p>
+                <div id="master-checklist">
+                    <div class="checklist-item" data-phase="1">
+                        <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                        <span class="item-text text-gray-300 font-semibold">Phase 1: Build Your Arsenal - Understood</span>
+                    </div>
+                    <div class="checklist-item" data-phase="2">
+                        <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                        <span class="item-text text-gray-300 font-semibold">Phase 2: Identify Targets - Understood</span>
+                    </div>
+                    <div class="checklist-item" data-phase="3">
+                        <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                        <span class="item-text text-gray-300 font-semibold">Phase 3: Outreach Campaign - Understood</span>
+                    </div>
+                    <div class="checklist-item" data-phase="4">
+                        <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                        <span class="item-text text-gray-300 font-semibold">Phase 4: Follow-up & Track - Understood</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 1: Collapsible -->
+            <details id="phase-1-details">
+                <summary class="flex items-center">
+                    <div class="phase-number">1</div>
+                    <h2 class="text-2xl font-bold text-white">Build Your Arsenal</h2>
+                    <div class="completion-badge">Completed</div>
+                </summary>
+                <div class="phase-content">
+                    <p class="text-gray-400 mb-6">Before outreach, you need "value bombs" ready. These are your Automation Cards that prove you solve real business problems.</p>
+                    <div class="internal-checklist">
+                        <div class="checklist-item">
+                            <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                            <span class="item-text text-gray-300">Finalize Your First 3 "Automation Cards."</span>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                            <span class="item-text text-gray-300">Create a simple visual (flowchart) for each card.</span>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                            <span class="item-text text-gray-300">Save each card as a PDF or shareable Notion page.</span>
+                        </div>
+                    </div>
+                    <div class="hint-box">
+                        <p class="font-bold text-d2b48c">💡 Hint:</p>
+                        <p class="text-gray-400">Tell a compelling story: "Here was the pain, here's how I fixed it, and here was the amazing result."</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Phase 2: Collapsible -->
+            <details id="phase-2-details">
+                <summary class="flex items-center">
+                    <div class="phase-number">2</div>
+                    <h2 class="text-2xl font-bold text-white">Identify Targets</h2>
+                    <div class="completion-badge">Completed</div>
+                </summary>
+                <div class="phase-content">
+                    <p class="text-gray-400 mb-6">Find the right people to talk to. Start with who you know and expand outward.</p>
+                    <div class="internal-checklist">
+                        <div class="checklist-item"><div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><span class="item-text text-gray-300">Define Your Ideal Client Profile (ICP).</span></div>
+                        <div class="checklist-item"><div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><span class="item-text text-gray-300">Brainstorm a "Warm List" of 5 leads.</span></div>
+                        <div class="checklist-item"><div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><span class="item-text text-gray-300">Build a "Cold List" of 15 leads via LinkedIn.</span></div>
+                        <div class="checklist-item"><div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><span class="item-text text-gray-300">Create a simple tracking system (Sheet/Notion).</span></div>
+                    </div>
+                    <div class="hint-box">
+                        <p class="font-bold text-d2b48c">💡 Hint:</p>
+                        <p class="text-gray-400">Action is more important than perfection. The goal is to get 20 names on a list.</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Phase 3: Collapsible -->
+            <details id="phase-3-details">
+                <summary class="flex items-center">
+                    <div class="phase-number">3</div>
+                    <h2 class="text-2xl font-bold text-white">Outreach Campaign</h2>
+                    <div class="completion-badge">Completed</div>
+                </summary>
+                <div class="phase-content">
+                    <p class="text-gray-400 mb-6">Use this low-pressure, high-value message sequence. The goal: start a conversation, not a sales pitch.</p>
+                    <div class="space-y-6">
+                        <div><h3 class="font-semibold text-xl mb-2 text-d2b48c">Message 1: The Opener</h3><pre class="message-template">Hey [Name], I'm putting together some case studies for [Your ICP] and your name popped up. I was wondering if you know anyone in that space who struggles with [Problem from your Card]? Any pointers would be a huge help.</pre></div>
+                        <div><h3 class="font-semibold text-xl mb-2 text-d2b48c">Message 2: The Pivot</h3><pre class="message-template">Awesome, thanks! Essentially, I solve that with what I call a "[Automation Card Title]." It's a system that automatically [High-level solution]. Does that concept make sense?</pre></div>
+                        <div><h3 class="font-semibold text-xl mb-2 text-d2b48c">Message 3: The Value Offer</h3><pre class="message-template">Glad it resonates. I put together a one-page summary of how it worked for a client (they got back ~5 hours a week). No strings attached, but would that be helpful for you to see?</pre></div>
+                        <div><h3 class="font-semibold text-xl mb-2 text-d2b48c">Message 4: The Ask</h3><pre class="message-template">Here you go: [Link to Card]. If you feel a similar approach could be useful, I'd be open to a quick 15-min chat next week to explore it. Let me know what you think!</pre></div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Phase 4: Collapsible -->
+            <details id="phase-4-details">
+                <summary class="flex items-center">
+                    <div class="phase-number">4</div>
+                    <h2 class="text-2xl font-bold text-white">Follow-up & Track</h2>
+                    <div class="completion-badge">Completed</div>
+                </summary>
+                <div class="phase-content">
+                    <p class="text-gray-400 mb-6">Persistence is key. Not everyone will reply to your first message. Stay organized and celebrate the conversations.</p>
+                     <div class="internal-checklist">
+                        <div class="checklist-item"><div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><span class="item-text text-gray-300">Follow up on Message 1 after 5-7 business days.</span></div>
+                        <div class="checklist-item"><div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><span class="item-text text-gray-300">Keep your tracking sheet updated religiously.</span></div>
+                        <div class="checklist-item"><div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><span class="item-text text-gray-300">Celebrate conversations started, not just deals closed.</span></div>
+                    </div>
+                    <div class="hint-box">
+                        <p class="font-bold text-d2b48c">💡 Follow-up Template:</p>
+                        <pre class="message-template mt-2">Hey [Name], just wanted to gently bump this in your inbox. No pressure at all, just wanted to make sure you saw it.</pre>
+                    </div>
+                </div>
+            </details>
+
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>&copy; 2024 Interactive Playbook. Ready, set, execute.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Master Checklist Logic ---
+            const masterChecklistItems = document.querySelectorAll('#master-checklist .checklist-item');
+            masterChecklistItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('completed');
+                    const phaseNumber = this.getAttribute('data-phase');
+                    const phaseDetails = document.getElementById(`phase-${phaseNumber}-details`);
+                    if (phaseDetails) {
+                        phaseDetails.classList.toggle('phase-completed');
+                    }
+                });
+            });
+
+            // --- Internal Checklists Logic ---
+            const internalChecklistItems = document.querySelectorAll('.internal-checklist .checklist-item');
+            internalChecklistItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('completed');
+                });
+            });
+
+            // --- Initialize Particles.js ---
+            particlesJS('particles-js', {
+                "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#d2b48c" }, "shape": { "type": "circle" }, "opacity": { "value": 0.2, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#444", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" } },
+                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } } },
+                "retina_detect": true
+            });
+        });
+    </script>
+</body>
+</html>
