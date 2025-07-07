@@ -5,42 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IdeaGen Showcase</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* New Style Block from your template */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827;
-            color: #f3f4f6;
+            background-color: #1a1a1a;
+            color: #f5f5dc;
         }
-        .card {
-            background-color: #1f2937;
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-color: #1a1a1a;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .animated-card {
+            background-color: #2c2c2c;
+            border: 1px solid #444;
             border-radius: 0.75rem;
+            padding: 0; /* Changed from 1.5rem to 0 for image fit */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
             overflow: hidden;
-            border: 1px solid #374151;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            display: flex; /* Added for flex structure */
+            flex-direction: column; /* Added for flex structure */
         }
-        .card:hover {
+        .animated-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border-color: #d2b48c;
         }
+        .animated-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(210, 180, 140, 0.15), transparent);
+            transition: left 0.8s ease;
+        }
+        .animated-card:hover::before {
+            left: 100%;
+        }
+        main > a:nth-of-type(1) .animated-card { animation-delay: 0.2s; }
+        main > a:nth-of-type(2) .animated-card { animation-delay: 0.3s; }
+        main > a:nth-of-type(3) .animated-card { animation-delay: 0.4s; }
+        main > a:nth-of-type(4) .animated-card { animation-delay: 0.5s; }
+        main > a:nth-of-type(5) .animated-card { animation-delay: 0.6s; }
+        main > a:nth-of-type(6) .animated-card { animation-delay: 0.7s; }
+
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        
+        .header-pulse { animation: pulse 2s infinite ease-in-out; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); text-shadow: 0 0 5px #f5f5dc; }
+            50% { transform: scale(1.02); text-shadow: 0 0 15px #f5f5dc; }
+        }
+        
+        .highlight { color: #d2b48c; font-weight: 600; }
         .card-content { flex-grow: 1; }
     </style>
 </head>
 <body class="antialiased">
-    <div class="container mx-auto p-4 md:p-8">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-white">IdeaGen Library</h1>
-            <p class="text-lg text-gray-400 mt-2">A collection of generated ideas and concepts.</p>
-        </header>
-        <main id="idea-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Cards will be dynamically inserted here -->
-        </main>
-        <div id="status-message" class="text-center text-gray-400 mt-12 text-xl"></div>
+    <div id="particles-js"></div>
+    
+    <div class="content-wrapper">
+        <div class="container mx-auto p-4 md:p-8">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-white header-pulse">IdeaGen Library</h1>
+                <p class="text-lg text-gray-300 mt-2">A collection of generated ideas and concepts.</p>
+            </header>
+            <main id="idea-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </main>
+            <div id="status-message" class="text-center text-gray-400 mt-12 text-xl"></div>
+        </div>
     </div>
 
     <script>
+        // Particle.js setup script
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS('particles-js', {
+                "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#d2b48c" }, "shape": { "type": "circle" }, "opacity": { "value": 0.2, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#444", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" } },
+                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } } },
+                "retina_detect": true
+            });
+        });
+
+        // Your existing script to fetch and display ideas
         document.addEventListener('DOMContentLoaded', function() {
             const gallery = document.getElementById('idea-gallery');
             const statusMessage = document.getElementById('status-message');
@@ -64,7 +129,8 @@
                         cardLink.href = `IdeaGen/${idea.file}`;
                         
                         const card = document.createElement('div');
-                        card.className = 'card';
+                        // Applied animated-card class for the new style
+                        card.className = 'animated-card';
                         
                         card.innerHTML = `
                             <img src="${idea.image}" alt="Preview for ${idea.title}" class="w-full h-48 object-cover">
