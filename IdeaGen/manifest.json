@@ -1,0 +1,22 @@
+{
+  "ideas": [
+    {
+      "title": "My First Great Idea",
+      "file": "first-idea.html",
+      "description": "A brief but compelling summary of what this generated idea is about.",
+      "image": "path/to/your/image1.png"
+    },
+    {
+      "title": "Another Innovative Concept",
+      "file": "another-concept.html",
+      "description": "This concept explores the future of automated workflows and its potential impact.",
+      "image": "path/to/your/image2.png"
+    },
+    {
+      "title": "A Third Powerful Idea",
+      "file": "third-idea.html",
+      "description": "This page details a solution for a common business problem using n8n.",
+      "image": "path/to/your/image3.png"
+    }
+  ]
+}
